@@ -3,7 +3,7 @@
 use crate::{
     asset_tracking::LoadResource,
     audio::music,
-    demo::player::{PlayerAssets, player},
+    duck_demo::player::{PlayerAssets, player},
     screens::Screen,
 };
 use bevy::prelude::*;

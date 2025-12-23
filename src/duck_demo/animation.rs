@@ -7,7 +7,7 @@
 use crate::{
     AppSystems, PausableSystems,
     audio::sound_effect,
-    demo::{movement::MovementController, player::PlayerAssets},
+    duck_demo::{movement::MovementController, player::PlayerAssets},
 };
 use bevy::prelude::*;
 use rand::prelude::*;

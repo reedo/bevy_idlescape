@@ -3,7 +3,7 @@
 use crate::{
     AppSystems, PausableSystems,
     asset_tracking::LoadResource,
-    demo::{
+    duck_demo::{
         animation::PlayerAnimation,
         movement::{MovementController, ScreenWrap},
     },
