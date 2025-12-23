@@ -1,6 +1,8 @@
 use bevy::prelude::*;
 use tracing::info;
 
+use std::collections::VecDeque;
+
 #[derive(Resource, Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum FishType {
     #[default]
@@ -30,6 +32,22 @@ pub struct Inventory {
     pub catches: Vec<FishType>,
 }
 
+#[derive(Resource, Default)]
+pub struct GameLog {
+    pub entries: VecDeque<String>,
+}
+
+impl GameLog {
+    const MAX_ENTRIES: usize = 5;
+
+    pub fn add_entry(&mut self, entry: impl Into<String>) {
+        self.entries.push_back(entry.into());
+        if self.entries.len() > Self::MAX_ENTRIES {
+            self.entries.pop_front();
+        }
+    }
+}
+
 pub fn start_game(mut commands: Commands) {
     commands.set_state(GameState::Starting);
 }
@@ -46,6 +64,7 @@ pub fn load_game(mut commands: Commands) {
         timer: Timer::from_seconds(2.0, TimerMode::Repeating),
     });
     commands.init_resource::<Inventory>();
+    commands.init_resource::<GameLog>();
 
     commands.set_state(GameState::Playing);
 }
@@ -54,6 +73,7 @@ pub fn fishing_system(
     time: Res<Time>,
     mut fishing_state: ResMut<FishingState>,
     mut inventory: ResMut<Inventory>,
+    mut game_log: ResMut<GameLog>,
 ) {
     if fishing_state.selected_fish == FishType::None {
         return;
@@ -61,16 +81,17 @@ pub fn fishing_system(
 
     if fishing_state.timer.tick(time.delta()).just_finished() {
         inventory.catches.push(fishing_state.selected_fish);
-        info!("Caught a {:?}", fishing_state.selected_fish);
+        let message = format!("Caught a {}", fishing_state.selected_fish.name());
+        game_log.add_entry(message);
     }
-}
-
-pub fn simulate_gameplay() {
-    info!("Simulating gameplay");
 }
 
 pub fn reset_game(mut commands: Commands) {
     info!("Resetting game");
+
+    commands.remove_resource::<FishingState>();
+    commands.remove_resource::<Inventory>();
+    commands.remove_resource::<GameLog>();
 
     commands.set_state(GameState::Stopped);
 }
