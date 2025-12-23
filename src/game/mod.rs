@@ -10,9 +10,6 @@ pub(crate) fn plugin(app: &mut App) {
     app.add_systems(OnEnter(GameState::Stopping), reset_game);
 }
 
-/// Spawns an instance of the game when entering the gameplay screen.
-///
-/// Despawns when exiting the gameplay screen.
 pub fn start_game(mut commands: Commands) {
     commands.set_state(GameState::Starting);
 }
