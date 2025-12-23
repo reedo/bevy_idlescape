@@ -7,6 +7,7 @@ mod asset_tracking;
 mod audio;
 #[cfg(feature = "dev")]
 mod dev_tools;
+mod game;
 mod menus;
 mod scenes;
 mod screens;
@@ -49,13 +50,11 @@ impl Plugin for AppPlugin {
             audio::plugin,
             #[cfg(feature = "dev")]
             dev_tools::plugin,
+            game::plugin,
             menus::plugin,
             screens::plugin,
             theme::plugin,
         ));
-
-        // Add scene plugins.
-        app.add_plugins(fishing::plugin);
 
         // Order new `AppSystems` variants by adding them here:
         app.configure_sets(

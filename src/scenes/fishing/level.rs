@@ -1,4 +1,4 @@
-use crate::screens::Screen;
+use crate::{screens::Screen, theme::widget};
 use bevy::{ecs::children, prelude::*};
 
 pub(crate) fn plugin(_app: &mut App) {
@@ -15,12 +15,7 @@ pub fn spawn_level(mut commands: Commands) {
         Visibility::default(),
         DespawnOnExit(Screen::Gameplay),
         children![(
-            Node {
-                width: percent(100.0),
-                height: percent(100.0),
-                flex_direction: FlexDirection::Row,
-                ..default()
-            },
+            widget::ui_root("UI Root - Fishing Level"),
             children![
                 (
                     Name::new("Left Panel"),
@@ -32,7 +27,8 @@ pub fn spawn_level(mut commands: Commands) {
                     BackgroundColor(Color::srgb(0.0, 1.0, 0.0)),
                 ),
                 (
-                    Name::new("Viewport"),
+                    // Name::new("Viewport"),
+                    widget::header("Game Window"),
                     Node {
                         flex_grow: 1.0,
                         height: percent(100.0),
@@ -41,7 +37,8 @@ pub fn spawn_level(mut commands: Commands) {
                     BackgroundColor(Color::srgb(0.0, 0.0, 1.0)),
                 ),
                 (
-                    Name::new("Right Panel"),
+                    // Name::new("Right Panel"),
+                    widget::header("Right Panel"),
                     Node {
                         width: px(250.0),
                         height: percent(100.0),
