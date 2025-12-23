@@ -30,9 +30,10 @@ pub fn ui_root(name: impl Into<Cow<'static, str>>) -> impl Bundle {
 
 /// A simple header label. Bigger than [`label`].
 pub fn header(text: impl Into<String>) -> impl Bundle {
+    let text = text.into();
     (
-        Name::new("Header"),
-        Text(text.into()),
+        Name::new(format!("Header - {}", &text)),
+        Text(text),
         TextFont::from_font_size(40.0),
         TextColor(HEADER_TEXT),
     )

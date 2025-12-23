@@ -1,19 +1,16 @@
 //! Player-specific behavior.
 
-use crate::{
-    AppSystems, PausableSystems,
-    asset_tracking::LoadResource,
-    duck_demo::{
-        animation::PlayerAnimation,
-        movement::{MovementController, ScreenWrap},
-    },
+use crate::scenes::duck_demo::{
+    animation::PlayerAnimation,
+    movement::{MovementController, ScreenWrap},
 };
+use crate::{AppSystems, PausableSystems, asset_tracking::LoadResource};
 use bevy::{
     image::{ImageLoaderSettings, ImageSampler},
     prelude::*,
 };
 
-pub(super) fn plugin(app: &mut App) {
+pub(crate) fn plugin(app: &mut App) {
     app.load_resource::<PlayerAssets>();
 
     // Record directional input as movement controls.

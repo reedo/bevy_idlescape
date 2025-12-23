@@ -4,16 +4,13 @@
 //! - [Sprite animation](https://github.com/bevyengine/bevy/blob/latest/examples/2d/sprite_animation.rs)
 //! - [Timers](https://github.com/bevyengine/bevy/blob/latest/examples/time/timers.rs)
 
-use crate::{
-    AppSystems, PausableSystems,
-    audio::sound_effect,
-    duck_demo::{movement::MovementController, player::PlayerAssets},
-};
+use crate::scenes::duck_demo::{movement::MovementController, player::PlayerAssets};
+use crate::{AppSystems, PausableSystems, audio::sound_effect};
 use bevy::prelude::*;
 use rand::prelude::*;
 use std::time::Duration;
 
-pub(super) fn plugin(app: &mut App) {
+pub(crate) fn plugin(app: &mut App) {
     // Animate and play sound effects based on controls.
     app.add_systems(
         Update,

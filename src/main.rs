@@ -7,11 +7,12 @@ mod asset_tracking;
 mod audio;
 #[cfg(feature = "dev")]
 mod dev_tools;
-mod duck_demo;
 mod menus;
+mod scenes;
 mod screens;
 mod theme;
 
+use crate::scenes::fishing;
 use bevy::{asset::AssetMetaCheck, prelude::*};
 
 fn main() -> AppExit {
@@ -22,7 +23,6 @@ pub struct AppPlugin;
 
 impl Plugin for AppPlugin {
     fn build(&self, app: &mut App) {
-        // Add Bevy plugins.
         app.add_plugins(
             DefaultPlugins
                 .set(AssetPlugin {
@@ -47,13 +47,15 @@ impl Plugin for AppPlugin {
         app.add_plugins((
             asset_tracking::plugin,
             audio::plugin,
-            duck_demo::plugin,
             #[cfg(feature = "dev")]
             dev_tools::plugin,
             menus::plugin,
             screens::plugin,
             theme::plugin,
         ));
+
+        // Add scene plugins.
+        app.add_plugins(fishing::plugin);
 
         // Order new `AppSystems` variants by adding them here:
         app.configure_sets(

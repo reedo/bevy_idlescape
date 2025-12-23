@@ -1,14 +1,10 @@
 //! Spawn the main level.
 
-use crate::{
-    asset_tracking::LoadResource,
-    audio::music,
-    duck_demo::player::{PlayerAssets, player},
-    screens::Screen,
-};
+use crate::scenes::duck_demo::player::{PlayerAssets, player};
+use crate::{asset_tracking::LoadResource, audio::music, screens::Screen};
 use bevy::prelude::*;
 
-pub(super) fn plugin(app: &mut App) {
+pub(crate) fn plugin(app: &mut App) {
     app.load_resource::<LevelAssets>();
 }
 
@@ -36,7 +32,7 @@ pub fn spawn_level(
     mut texture_atlas_layouts: ResMut<Assets<TextureAtlasLayout>>,
 ) {
     commands.spawn((
-        Name::new("Level"),
+        Name::new("Duck Level"),
         Transform::default(),
         Visibility::default(),
         DespawnOnExit(Screen::Gameplay),
