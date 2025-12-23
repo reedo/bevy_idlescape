@@ -1,6 +1,11 @@
 //! The screen state for the main gameplay.
 
-use crate::{Pause, game::end_game, game::start_game, menus::Menu, screens::Screen};
+use crate::{
+    Pause,
+    game::{end_game, start_game},
+    menus::Menu,
+    screens::Screen,
+};
 use bevy::{input::common_conditions::input_just_pressed, prelude::*};
 
 pub(super) fn plugin(app: &mut App) {
