@@ -4,6 +4,7 @@ authors = ["reedo <dan@reedo.dev>"]
 version = "0.1.0"
 
 edition = "2024"
+resolver = "3"
 
 [dependencies]
 bevy = { version = "0.17" }
