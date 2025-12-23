@@ -4,7 +4,7 @@ use crate::screens::Screen;
 use bevy::prelude::*;
 
 pub(crate) fn plugin(app: &mut App) {
-    // Do nothing.
+    // Nothing requires setup.
 }
 
 /// Spawns an instance of the game when entering the gameplay screen.

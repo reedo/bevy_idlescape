@@ -13,7 +13,6 @@ mod scenes;
 mod screens;
 mod theme;
 
-use crate::scenes::fishing;
 use bevy::{asset::AssetMetaCheck, prelude::*};
 
 fn main() -> AppExit {
@@ -98,5 +97,5 @@ struct Pause(pub bool);
 struct PausableSystems;
 
 fn spawn_camera(mut commands: Commands) {
-    commands.spawn((Name::new("Camera"), Camera2d));
+    commands.spawn((Name::new("UI Camera"), Camera2d));
 }
