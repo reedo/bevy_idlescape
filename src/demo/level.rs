@@ -1,19 +1,18 @@
 //! Spawn the main level.
 
-use bevy::prelude::*;
-
 use crate::{
     asset_tracking::LoadResource,
     audio::music,
     demo::player::{PlayerAssets, player},
     screens::Screen,
 };
+use bevy::prelude::*;
 
 pub(super) fn plugin(app: &mut App) {
     app.load_resource::<LevelAssets>();
 }
 
-#[derive(Resource, Asset, Clone, Reflect)]
+#[derive(Asset, Clone, Reflect, Resource)]
 #[reflect(Resource)]
 pub struct LevelAssets {
     #[dependency]

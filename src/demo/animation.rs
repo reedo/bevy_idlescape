@@ -4,15 +4,14 @@
 //! - [Sprite animation](https://github.com/bevyengine/bevy/blob/latest/examples/2d/sprite_animation.rs)
 //! - [Timers](https://github.com/bevyengine/bevy/blob/latest/examples/time/timers.rs)
 
-use bevy::prelude::*;
-use rand::prelude::*;
-use std::time::Duration;
-
 use crate::{
     AppSystems, PausableSystems,
     audio::sound_effect,
     demo::{movement::MovementController, player::PlayerAssets},
 };
+use bevy::prelude::*;
+use rand::prelude::*;
+use std::time::Duration;
 
 pub(super) fn plugin(app: &mut App) {
     // Animate and play sound effects based on controls.
@@ -99,7 +98,7 @@ pub struct PlayerAnimation {
     state: PlayerAnimationState,
 }
 
-#[derive(Reflect, PartialEq)]
+#[derive(PartialEq, Reflect)]
 pub enum PlayerAnimationState {
     Idling,
     Walking,
@@ -148,7 +147,7 @@ impl PlayerAnimation {
             };
     }
 
-    /// Update animation state if it changes.
+    /// Update the animation state if it changes.
     pub fn update_state(&mut self, state: PlayerAnimationState) {
         if self.state != state {
             match state {

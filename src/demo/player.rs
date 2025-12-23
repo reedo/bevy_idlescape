@@ -1,10 +1,5 @@
 //! Player-specific behavior.
 
-use bevy::{
-    image::{ImageLoaderSettings, ImageSampler},
-    prelude::*,
-};
-
 use crate::{
     AppSystems, PausableSystems,
     asset_tracking::LoadResource,
@@ -12,6 +7,10 @@ use crate::{
         animation::PlayerAnimation,
         movement::{MovementController, ScreenWrap},
     },
+};
+use bevy::{
+    image::{ImageLoaderSettings, ImageSampler},
+    prelude::*,
 };
 
 pub(super) fn plugin(app: &mut App) {
@@ -58,7 +57,7 @@ pub fn player(
     )
 }
 
-#[derive(Component, Debug, Clone, Copy, PartialEq, Eq, Default, Reflect)]
+#[derive(Clone, Component, Copy, Debug, Default, Eq, PartialEq, Reflect)]
 #[reflect(Component)]
 struct Player;
 
@@ -91,7 +90,7 @@ fn record_player_directional_input(
     }
 }
 
-#[derive(Resource, Asset, Clone, Reflect)]
+#[derive(Asset, Clone, Reflect, Resource)]
 #[reflect(Resource)]
 pub struct PlayerAssets {
     #[dependency]

@@ -1,12 +1,11 @@
 //! A splash screen that plays briefly at startup.
 
+use crate::{AppSystems, screens::Screen, theme::prelude::*};
 use bevy::{
     image::{ImageLoaderSettings, ImageSampler},
     input::common_conditions::input_just_pressed,
     prelude::*,
 };
-
-use crate::{AppSystems, screens::Screen, theme::prelude::*};
 
 pub(super) fn plugin(app: &mut App) {
     // Spawn splash screen.
@@ -112,7 +111,7 @@ fn apply_fade_in_out(mut animation_query: Query<(&ImageNodeFadeInOut, &mut Image
     }
 }
 
-#[derive(Resource, Debug, Clone, PartialEq, Reflect)]
+#[derive(Clone, Debug, PartialEq, Reflect, Resource)]
 #[reflect(Resource)]
 struct SplashTimer(Timer);
 

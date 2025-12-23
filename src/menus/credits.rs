@@ -1,8 +1,7 @@
 //! The credits menu.
 
-use bevy::{ecs::spawn::SpawnIter, input::common_conditions::input_just_pressed, prelude::*};
-
 use crate::{asset_tracking::LoadResource, audio::music, menus::Menu, theme::prelude::*};
+use bevy::{ecs::spawn::SpawnIter, input::common_conditions::input_just_pressed, prelude::*};
 
 pub(super) fn plugin(app: &mut App) {
     app.add_systems(OnEnter(Menu::Credits), spawn_credits_menu);
@@ -85,7 +84,7 @@ fn go_back(mut next_menu: ResMut<NextState<Menu>>) {
     next_menu.set(Menu::Main);
 }
 
-#[derive(Resource, Asset, Clone, Reflect)]
+#[derive(Asset, Clone, Reflect, Resource)]
 #[reflect(Resource)]
 struct CreditsAssets {
     #[dependency]

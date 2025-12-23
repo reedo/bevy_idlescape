@@ -1,8 +1,7 @@
 //! A high-level way to load collections of asset handles as resources.
 
-use std::collections::VecDeque;
-
 use bevy::prelude::*;
+use std::collections::VecDeque;
 
 pub(super) fn plugin(app: &mut App) {
     app.init_resource::<ResourceHandles>();
@@ -13,11 +12,11 @@ pub trait LoadResource {
     /// This will load the [`Resource`] as an [`Asset`]. When all of its asset dependencies
     /// have been loaded, it will be inserted as a resource. This ensures that the resource only
     /// exists when the assets are ready.
-    fn load_resource<T: Resource + Asset + Clone + FromWorld>(&mut self) -> &mut Self;
+    fn load_resource<T: Asset + Clone + FromWorld + Resource>(&mut self) -> &mut Self;
 }
 
 impl LoadResource for App {
-    fn load_resource<T: Resource + Asset + Clone + FromWorld>(&mut self) -> &mut Self {
+    fn load_resource<T: Asset + Clone + FromWorld + Resource>(&mut self) -> &mut Self {
         self.init_asset::<T>();
         let world = self.world_mut();
         let value = T::from_world(world);
@@ -39,7 +38,7 @@ impl LoadResource for App {
 /// A function that inserts a loaded resource.
 type InsertLoadedResource = fn(&mut World, &UntypedHandle);
 
-#[derive(Resource, Default)]
+#[derive(Default, Resource)]
 pub struct ResourceHandles {
     // Use a queue for waiting assets so they can be cycled through and moved to
     // `finished` one at a time.

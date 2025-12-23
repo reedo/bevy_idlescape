@@ -1,8 +1,7 @@
 //! The screen state for the main gameplay.
 
+use crate::{demo::level::spawn_level, menus::Menu, screens::Screen, Pause};
 use bevy::{input::common_conditions::input_just_pressed, prelude::*};
-
-use crate::{Pause, demo::level::spawn_level, menus::Menu, screens::Screen};
 
 pub(super) fn plugin(app: &mut App) {
     app.add_systems(OnEnter(Screen::Gameplay), spawn_level);

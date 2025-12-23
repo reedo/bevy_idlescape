@@ -14,7 +14,7 @@
         "scope": "rust",
         "prefix": "component",
         "body": [
-            "#[derive(Component, Reflect, Debug)]",
+            "#[derive(Component, Debug, Reflect)]",
             "#[reflect(Component)]",
             "struct $1;"
         ]
@@ -23,7 +23,7 @@
         "scope": "rust",
         "prefix": "resource",
         "body": [
-            "#[derive(Resource, Reflect, Debug, Default)]",
+            "#[derive(Debug, Default, Reflect, Resource)]",
             "#[reflect(Resource)]",
             "struct $1;"
         ]
@@ -32,7 +32,7 @@
         "scope": "rust",
         "prefix": "event",
         "body": [
-            "#[derive(Event, Debug)]",
+            "#[derive(Debug, Event)]",
             "struct $1;"
         ]
     },
@@ -40,7 +40,7 @@
         "scope": "rust",
         "prefix": "systemset",
         "body": [
-            "#[derive(SystemSet, Copy, Clone, Eq, PartialEq, Hash, Debug)]",
+            "#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, SystemSet)]",
             "enum $1 {",
             "\t$0",
             "}"
@@ -50,7 +50,7 @@
         "scope": "rust",
         "prefix": "schedule",
         "body": [
-            "#[derive(ScheduleLabel, Copy, Clone, Eq, PartialEq, Hash, Debug)]",
+            "#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, ScheduleLabel)]",
             "struct $1;"
         ]
     },
@@ -58,7 +58,7 @@
         "scope": "rust",
         "prefix": "states",
         "body": [
-            "#[derive(States, Copy, Clone, Eq, PartialEq, Hash, Debug, Default)]",
+            "#[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq, States)]",
             "enum $1 {",
             "\t#[default]",
             "\t$0",

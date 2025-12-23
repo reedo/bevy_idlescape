@@ -91,7 +91,9 @@ where
     )
 }
 
-/// A simple button with text and an action defined as an [`Observer`]. The button's layout is provided by `button_bundle`.
+/// A simple button with text and an action defined as an [`Observer`].
+///
+/// The button's layout is provided by `button_bundle`.
 fn button_base<E, B, M, I>(
     text: impl Into<String>,
     action: I,
@@ -104,6 +106,7 @@ where
 {
     let text = text.into();
     let action = IntoObserverSystem::into_system(action);
+
     (
         Name::new("Button"),
         Node::default(),

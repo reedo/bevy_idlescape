@@ -78,7 +78,7 @@ impl Plugin for AppPlugin {
 /// High-level groupings of systems for the app in the `Update` schedule.
 /// When adding a new variant, make sure to order it in the `configure_sets`
 /// call above.
-#[derive(SystemSet, Debug, Clone, Copy, Eq, PartialEq, Hash, PartialOrd, Ord)]
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, SystemSet)]
 enum AppSystems {
     /// Tick timers.
     TickTimers,
@@ -88,12 +88,12 @@ enum AppSystems {
     Update,
 }
 
-/// Whether or not the game is paused.
-#[derive(States, Copy, Clone, Eq, PartialEq, Hash, Debug, Default)]
+/// Whether the game is paused.
+#[derive(Clone, Copy, Debug, Default, Eq, Hash, PartialEq, States)]
 struct Pause(pub bool);
 
 /// A system set for systems that shouldn't run while the game is paused.
-#[derive(SystemSet, Copy, Clone, Eq, PartialEq, Hash, Debug)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, SystemSet)]
 struct PausableSystems;
 
 fn spawn_camera(mut commands: Commands) {
