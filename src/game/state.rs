@@ -1,7 +1,6 @@
 use bevy::prelude::*;
-use tracing::info;
-
 use std::collections::VecDeque;
+use tracing::info;
 
 #[derive(Resource, Debug, Clone, Copy, PartialEq, Eq, Default)]
 pub enum FishType {
@@ -38,7 +37,7 @@ pub struct GameLog {
 }
 
 impl GameLog {
-    const MAX_ENTRIES: usize = 5;
+    const MAX_ENTRIES: usize = 50;
 
     pub fn add_entry(&mut self, entry: impl Into<String>) {
         self.entries.push_back(entry.into());

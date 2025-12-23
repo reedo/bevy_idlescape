@@ -1,6 +1,8 @@
-use crate::game::state::{FishType, FishingState, GameLog, Inventory};
-use crate::screens::Screen;
-use crate::theme::prelude::*;
+use crate::{
+    game::state::{FishType, FishingState, GameLog, Inventory},
+    screens::Screen,
+    theme::prelude::*,
+};
 use bevy::prelude::*;
 
 pub(super) fn plugin(app: &mut App) {
@@ -99,6 +101,8 @@ fn spawn_fishing_ui(mut commands: Commands) {
                         right.spawn((
                             Node {
                                 flex_direction: FlexDirection::Column,
+                                flex_grow: 1.0,
+                                overflow: Overflow::scroll_y(),
                                 ..default()
                             },
                             CatchListRoot,
@@ -125,6 +129,8 @@ fn spawn_fishing_ui(mut commands: Commands) {
                     bottom.spawn((
                         Node {
                             flex_direction: FlexDirection::Column,
+                            flex_grow: 1.0,
+                            overflow: Overflow::scroll_y(),
                             ..default()
                         },
                         LogRoot,
@@ -157,8 +163,8 @@ fn update_catch_list(
     if let Ok(root_entity) = query.single() {
         commands.entity(root_entity).despawn_children();
         commands.entity(root_entity).with_children(|parent| {
-            // Show last 10 catches
-            for fish in inventory.catches.iter().rev().take(10) {
+            // Show last 50 catches
+            for fish in inventory.catches.iter().rev().take(50) {
                 parent.spawn(widget::label(fish.name()));
             }
         });
