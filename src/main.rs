@@ -9,7 +9,6 @@ mod audio;
 mod dev_tools;
 mod game;
 mod menus;
-mod scenes;
 mod screens;
 mod theme;
 
